@@ -1,9 +1,27 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import LocationsList from "./components/locations-list"; 
+import dbConnect from "middleware/db-connect"; 
+import { findAllLocations } from "mongoose/locations/services"; 
+import { LocationType } from "mongoose/locations/schema"; 
+
+export default async function Home() {
+  let locations: LocationType[] | [] = [];
+
+  try {
+    await dbConnect();
+    locations = await findAllLocations();
+  } catch (err: any) {
+    console.error("Failed to fetch locations:", err);
+    return <div>Failed to load locations</div>;
+  }
+
+  const title = "The Food Finder - Home";
+
   return (
-    <div className="font-serif pt-6 text-center text-blue-800">
-      <h1> Hello From FoodFinder. </h1>
+    <div>
+      <h1>Welcome to Food Finder!</h1>
+      <LocationsList locations={locations} />
     </div>
   );
 }
