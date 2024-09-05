@@ -42,8 +42,9 @@ export const getServerSideProps: GetServerSideProps = async (
     try {
         await dbConnect();
         locations = await findLocationsById([locationId as string]);
+        
         if (!locations.length) {
-            throw new Error(`Locations ${locationsId} not found`);
+            throw new Error(`Locations ${locationId} not found`);
         } 
     } catch (err: any) {
         return {
@@ -51,6 +52,10 @@ export const getServerSideProps: GetServerSideProps = async (
         };
     }
     return {
-        props: { data: {location: JSON.stringify(locations.pop())}},
+        props: { 
+            data: { 
+                location: JSON.stringify(locations.pop())
+            }
+        },
     };
 };

@@ -7,6 +7,7 @@ interface UpdateWishlistInterface {
 }
 
 export const locationMutations = {
+    
     removeWishlist: async (
         _: any,
         param: UpdateWishlistInterface,

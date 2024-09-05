@@ -42,20 +42,20 @@ export async function onUserWishlist(
 }
 
 export async function updateWishlist(
-    location_ids: string,
+    location_id: string,
     user_id: string,
     action: string,
 ): Promise<LocationType | null | {}> {
-    let filter = { location_id: location_ids };
+    let filter = { location_id: location_id };
     let options: QueryOptions = { upsert: true, returnDocument: "after"};
     let update = {};
 
     switch (action) {
         case "add":
-            update = { $push: {on_wishlist: user_id}};
+            update = { $push: { on_wishlist: user_id }};
             break;
         case "remove":
-            update = { $push: {on_wishlist: user_id}};
+            update = { $pull: { on_wishlist: user_id }};
             break;
     }
 

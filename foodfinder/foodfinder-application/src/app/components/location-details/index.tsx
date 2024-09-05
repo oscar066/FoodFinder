@@ -5,31 +5,30 @@ interface PropsInterface {
     location: LocationType;
 }
 
-const LocationDetail = (props: PropsInterface): JSX.Element => {
-    let location = props.location;
+const LocationDetail = ({ location }: PropsInterface): JSX.Element => {
     return (
         <div>
             {location && (
                 <ul className={styles.root}>
                     <li>
                         <b>Address: </b>
-                        {location.address}
+                        {location.address ?? "N/A"}
                     </li>
                     <li>
                         <b>Zipcode: </b>
-                        {location.zipcode}
+                        {location.zipcode ?? "N/A"}
                     </li>
                     <li>
                         <b>Borough: </b>
-                        {location.borough}
+                        {location.borough ?? "N/A"}
                     </li>
                     <li>
                         <b>Cuisine: </b>
-                        {location.cuisine}
+                        {location.cuisine ?? "N/A"}
                     </li>
                     <li>
                         <b>Grade: </b>
-                        {location.grade}
+                        {location.grade ?? "N/A"}
                     </li>
                 </ul>
             )}

@@ -1,5 +1,6 @@
-import mongoose, { model } from "mongoose";
+import mongoose, { model, models } from "mongoose"; 
 import { LocationSchema, LocationType } from "mongoose/locations/schema";
 
-export default mongoose.models.locations || 
+// Check if 'locations' exists in 'mongoose.models' before using it
+export default models?.locations || 
     model<LocationType>("locations", LocationSchema);
