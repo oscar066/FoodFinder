@@ -3,11 +3,15 @@ import "../../../global.css";
 
 import type { AppProps } from "next/app";
 import Layout from ".";
+import { SessionProvider } from "next-auth/react";
 
-export default function Appp({ Component, pageProps}: AppProps) {
+export default function Appp({ 
+    Component, pageProps: { session, ...pageProps }}: AppProps) {
     return (
-        <Layout>
-            <Component {...pageProps}/>
-        </Layout>
+        <SessionProvider session={session}>
+            <Layout>
+                <Component {...pageProps}/>
+            </Layout>
+        </SessionProvider>
     );
 };
