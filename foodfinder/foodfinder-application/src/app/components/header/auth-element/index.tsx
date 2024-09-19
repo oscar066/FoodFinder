@@ -40,5 +40,7 @@ const AuthElement = (): JSX.Element => {
                 )}
             </nav>
         </>
-    )
-}
+    );
+};
+
+export default AuthElement;
