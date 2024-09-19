@@ -5,7 +5,8 @@ interface PropsInterface {
     location: LocationType;
 }
 
-const LocationDetail = ({ location }: PropsInterface): JSX.Element => {
+const LocationDetail = ( props : PropsInterface): JSX.Element => {
+    let location = props.location;
     return (
         <div>
             {location && (
